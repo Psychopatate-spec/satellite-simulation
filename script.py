@@ -18,7 +18,12 @@ vx1, vy1 = 0.0, 0.0
 M2 = 1
 x2, y2 = 400.0, 200.0
 # Giving it an initial sideways velocity so it orbits instead of falling straight in
-vx2, vy2 = 15.0, 5.0 
+vx2, vy2 = 20.0, 0.0
+
+# Satellite 3 (Moon)
+M3 = 0.1
+x3, y3 = 400.0, 150.0
+vx3, vy3 = 10.0, 0.0
 
 running = True
 while running:
@@ -29,7 +34,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # 1. Calculate distance (R) and direction components
+    # 1. Calculate distance (R) and direction components between Sun (1) and Planet (2)
     dx = x1 - x2
     dy = y1 - y2
     R = math.sqrt(dx**2 + dy**2)
@@ -55,17 +60,50 @@ while running:
     ax1 = -Fx / M1
     ay1 = -Fy / M1
 
+    # --- FORCES ON MOON (Satellite 3) ---
+    # Moon is pulled by the Sun (Satellite 1)
+    dx3_sun = x1 - x3
+    dy3_sun = y1 - y3
+    R3_sun = math.sqrt(dx3_sun**2 + dy3_sun**2)
+
+    if R3_sun < 5:
+        R3_sun = 5
+
+    F3_sun = G * (M1 * M3) / (R3_sun**2)
+    Fx3_sun = F3_sun * (dx3_sun / R3_sun)
+    Fy3_sun = F3_sun * (dy3_sun / R3_sun)
+
+    # Moon is also pulled by the Planet (Satellite 2)
+    dx3_planet = x2 - x3
+    dy3_planet = y2 - y3
+    R3_planet = math.sqrt(dx3_planet**2 + dy3_planet**2)
+
+    if R3_planet < 5:
+        R3_planet = 5
+
+    F3_planet = G * (M2 * M3) / (R3_planet**2)
+    Fx3_planet = F3_planet * (dx3_planet / R3_planet)
+    Fy3_planet = F3_planet * (dy3_planet / R3_planet)
+
+    # Total acceleration on moon is sum of forces from both Sun and Planet
+    ax3 = (Fx3_sun + Fx3_planet) / M3
+    ay3 = (Fy3_sun + Fy3_planet) / M3
+
     # 5. Update Velocities (v = v + a * dt)
     vx1 += ax1 * dt
     vy1 += ay1 * dt
     vx2 += ax2 * dt
     vy2 += ay2 * dt
+    vx3 += ax3 * dt
+    vy3 += ay3 * dt
 
     # 6. Update Positions (x = x + v * dt)
     x1 += vx1 * dt
     y1 += vy1 * dt
     x2 += vx2 * dt
     y2 += vy2 * dt
+    x3 += vx3 * dt
+    y3 += vy3 * dt
 
     # --- DRAWING ---
     screen.fill((0, 0, 0))
@@ -74,6 +112,8 @@ while running:
     pygame.draw.circle(screen, (255, 215, 0), (int(x1), int(y1)), 15)
     # Draw Light Object (White)
     pygame.draw.circle(screen, (255, 255, 255), (int(x2), int(y2)), 7)
+    # Draw Moon (Gray)
+    pygame.draw.circle(screen, (128, 128, 128), (int(x3), int(y3)), 5)
 
     pygame.display.flip()
 
