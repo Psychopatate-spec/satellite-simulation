@@ -9,7 +9,7 @@ clock = pygame.time.Clock()  # Used to control frame rate
 # Gravitational constant (adjusted for pixel scale)
 G = 10 
 
-# Satellite 1 (Heavy "Sun" at the center)
+# Satellite 1 (Heavy "Sun" at the center, it moves even thought it doesn't look like it's moving much because it's so heavy)
 M1 = 10000
 x1, y1 = 400.0, 400.0
 vx1, vy1 = 0.0, 0.0
@@ -20,10 +20,10 @@ x2, y2 = 400.0, 200.0
 # Giving it an initial sideways velocity so it orbits instead of falling straight in
 vx2, vy2 = 20.0, 0.0
 
-# Satellite 3 (Moon)
+# Satellite 3 (Moon, even thought it doesn't really orbit around the planet in this simple model, it's just influenced by both)
 M3 = 0.1
-x3, y3 = 400.0, 150.0
-vx3, vy3 = 10.0, 0.0
+x3, y3 = 400.0, 220.0
+vx3, vy3 = 15.0, 10.0
 
 running = True
 while running:
