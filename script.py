@@ -33,8 +33,6 @@ while running:
     a1 = G*M2/r**2
     a2 = G*M1/r**2
 
-    v1 = 
-
     screen.fill((0, 0, 0))
 
     #Draw satellites here
