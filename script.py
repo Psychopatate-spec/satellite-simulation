@@ -3,6 +3,7 @@ import math
 
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
+default_font = pygame.font.SysFont(None, 24)
 clock = pygame.time.Clock()  # Used to control frame rate
 
 # --- PHYSICS SETUP ---
@@ -23,16 +24,30 @@ vx2, vy2 = 20.0, 0.0
 # Satellite 3 (Moon, even thought it doesn't really orbit around the planet in this simple model, it's just influenced by both)
 M3 = 0.1
 x3, y3 = 400.0, 220.0
-vx3, vy3 = 15.0, 10.0
+vx3, vy3 = 22.0, 10.0
+
+# --- ORBIT TRAILS ---
+# Lists to store position history for drawing orbits
+trail1 = [(int(x1), int(y1))]
+trail2 = [(int(x2), int(y2))]
+trail3 = [(int(x3), int(y3))]
+max_trail_length = 500  # Limit trail length to prevent memory issues
 
 running = True
+paused = False
 while running:
-    # Maintain 60 frames per second. dt is time passed per frame (approx 0.016 seconds)
-    dt = clock.tick(60) / 100 
+    # Maintain 120 frames per second. dt is time passed per frame (approx 0.0083 seconds)
+    dt = clock.tick(120) / 100
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                paused = not paused
+    if paused:
+        continue
+                
 
     # 1. Calculate distance (R) and direction components between Sun (1) and Planet (2)
     dx = x1 - x2
@@ -105,8 +120,29 @@ while running:
     x3 += vx3 * dt
     y3 += vy3 * dt
 
+    # --- UPDATE TRAILS ---
+    trail1.append((int(x1), int(y1)))
+    trail2.append((int(x2), int(y2)))
+    trail3.append((int(x3), int(y3)))
+    
+    # Limit trail length
+    if len(trail1) > max_trail_length:
+        trail1.pop(0)
+    if len(trail2) > max_trail_length:
+        trail2.pop(0)
+    if len(trail3) > max_trail_length:
+        trail3.pop(0)
+
     # --- DRAWING ---
     screen.fill((0, 0, 0))
+
+    # Draw orbit trails
+    for pos in trail1:
+        pygame.draw.circle(screen, (255, 215, 0), pos, 1)
+    for pos in trail2:
+        pygame.draw.circle(screen, (255, 255, 255), pos, 1)
+    for pos in trail3:
+        pygame.draw.circle(screen, (128, 128, 128), pos, 1)
 
     # Draw Heavy Object (Yellow)
     pygame.draw.circle(screen, (255, 215, 0), (int(x1), int(y1)), 15)
@@ -114,6 +150,17 @@ while running:
     pygame.draw.circle(screen, (255, 255, 255), (int(x2), int(y2)), 7)
     # Draw Moon (Gray)
     pygame.draw.circle(screen, (128, 128, 128), (int(x3), int(y3)), 5)
+
+    velocity1 = default_font.render("velocity 1: " + str(round(math.sqrt(vx2**2 + vy2**2))), True, (255, 255, 255))
+    velocity2 = default_font.render("velocity 2: " + str(round(math.sqrt(vx3**2 + vy3**2))), True, (255, 255, 255))
+    distance_text1 = default_font.render("distance 1: " + str(round(R)), True, (255, 255, 255))
+    distance_text2 = default_font.render("distance 2: " + str(round(R3_planet)), True, (255, 255, 255))
+    fps_text = default_font.render("FPS: " + str(int(clock.get_fps())), True, (255, 255, 255))
+    screen.blit(fps_text, (10, 50))
+    screen.blit(velocity1, (10, 10))
+    screen.blit(velocity2, (10, 30))
+    screen.blit(distance_text1, (10, 70))
+    screen.blit(distance_text2, (10, 90))
 
     pygame.display.flip()
 
