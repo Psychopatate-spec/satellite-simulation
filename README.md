@@ -1,70 +1,23 @@
-# Satellite Simulator
+Build your own solar system using Pygame
 
-This is a simple satellite simulator built with `pygame-ce`.
+Introduction:
 
-## Installation
+So, I'm sure you once had that dream to work at NASA and become an astronaut and flying into space and stuff. Additionaly, astrophysics became trendy again, the movie Project Hail Marry got released, and Artemis III will in late 2027. So, let's build you're very own solar system, cuz it's cool and stuff. For that, we'll use Pygame-ce. Why not just use Pygame you say ? Silly you. Well, Pygame is no longer supported for earlier versions of python, such as python 3.14.5, that's why we're using Pygame-ce, which stands for "Community Edition". Enough yapping now, and let's get to the code.
 
-Use Python 3.14 or newer and install `pygame-ce` with pip:
+Setting up everything:
 
-```bash
-pip install pygame-ce
-```
+First, we need to install Pygame-ce. For that, you'll terminal and type the following command:
 
-## Running
+pip3 install pygame-ce
 
-Create a Python file such as `main.py` and run it:
+Boom, that's it. You now have Pygame-ce. Next step will be to create your .py file and import pygame.
 
-```bash
-python main.py
-```
+Create a window:
 
-## Tutorial
+Next, we'll need to create a window. We'll use a 800x800 screen and we'll color it in black, cuz space is black ig. Then, we'll need to check for the even QUIT. Without it, well, you can't quit the window. Here's the code for that:
 
-1. Import `pygame` and initialize it.
-2. Create a window and set the frame rate.
-3. Define a satellite position and an orbit radius.
-4. Update the satellite angle each frame and draw the orbit and satellite.
-5. Handle the quit event.
+"code"
 
-### Example code
+Physics:
 
-```python
-import pygame
-import math
-
-pygame.init()
-size = (800, 600)
-screen = pygame.display.set_mode(size)
-clock = pygame.time.Clock()
-
-angle = 0.0
-orbit_center = (400, 300)
-orbit_radius = 200
-speed = 0.01
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    angle += speed
-    x = orbit_center[0] + math.cos(angle) * orbit_radius
-    y = orbit_center[1] + math.sin(angle) * orbit_radius
-
-    screen.fill((0, 0, 20))
-    pygame.draw.circle(screen, (50, 50, 100), orbit_center, orbit_radius, 1)
-    pygame.draw.circle(screen, (255, 255, 0), orbit_center, 5)
-    pygame.draw.circle(screen, (200, 200, 255), (int(x), int(y)), 10)
-
-    pygame.display.flip()
-    clock.tick(60)
-
-pygame.quit()
-```
-
-## Notes
-
-- `pygame-ce` is the current package for newer Python versions.
-- `pygame` is no longer supported for Python 3.14 and newer.
-- Adjust `speed`, `orbit_radius`, and colors to customize the simulation.
+Now to the fun part. Physics! 
