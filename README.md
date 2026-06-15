@@ -212,6 +212,10 @@ x2 += vx2 * dt
 y2 += vy2 * dt
 ```
 
+You should now have a planet that orbits around a sun in an eliptic trajectory, just like this (but without the trails yet, we'll add it later)
+
+![Preview](/onebody.png)
+
 ---
 
 ## Step 2 — Add a Moon
