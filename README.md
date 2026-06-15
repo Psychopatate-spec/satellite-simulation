@@ -2,7 +2,7 @@
 
 Today I'll be teaching you how to build your own solar system using **Pygame Community Edition (pygame-ce)**.
 
-This project demonstrates how to simulate gravity using **Newton's Law of Universal Gravitation** (sounds scary but it'll be find trust me) and create realistic-looking planetary motion.
+This project demonstrates how to simulate gravity using **Newton's Law of Universal Gravitation** (sounds scary but it'll be fine trust me) and create realistic-looking planetary motion.
 
 ---
 
@@ -28,7 +28,7 @@ This project demonstrates how to simulate gravity using **Newton's Law of Univer
 - Python 3.14.5
 - pygame-ce
 
-So, because I'm using Python 3.14.5 and that Pygame isn't supported anymore, we'll use Pygame-ce, which stands for Pygame Community Edition. It does the same thing so dw. To install it, open your terminal and type this command:
+So, because I'm using Python 3.14.5 and the latest versions of Python aren't fully supported by regular Pygame yet, we'll use pygame-ce instead, which stands for Pygame Community Edition. It does the same thing so dw. To install it, open your terminal and type this command:
 
 ```bash
 pip install pygame-ce
@@ -233,6 +233,14 @@ vx3, vy3 = 20.0, 10.0
 The Moon is affected by both the Sun and the Planet.
 
 Calculate both forces separately and add them together.
+The Moon is now affected by two different objects:
+
+the Sun
+the Planet
+
+Unlike before, we can no longer calculate a single gravitational force.
+Instead, we calculate the force exerted by the Sun and the force exerted by the Planet separately, then add them together.
+This is the beginning of what physicists call the N-body problem.
 
 And boom, you got 2 planets going around a sun. Cool no ?
 You've now technically finished the tutorial, and the following steps are just extras that will make the project prettier. We'll be adding an orbit trail to our planets, and text that shows the velocity of our planets, their distance from the sun, and the FPS. 
@@ -241,7 +249,7 @@ You've now technically finished the tutorial, and the following steps are just e
 
 ## Step 3 — Orbit Trails
 
-We will store the position of our planets (yes even the sun has a trajoctory, but because it's so massive, we don't get to actually notice it.) and then draw a point for each position our planets went to.
+We will store the position of our planets (yes even the sun has a trajectory, but because it's so massive, we don't get to actually notice it.) and then draw a point for each position our planets went to.
 
 Store previous positions:
 
@@ -330,6 +338,21 @@ python3 script.py
 
 You should see a black screen with planets moving around. Cool no ? Feel free to mess around with the values of masses, initial velocity, or even the G constant, and see what happens !
 ---
+
+## Things To Try
+
+Now that your simulation works, try changing some values and see what happens.
+
+- Increase the Sun's mass.
+- Decrease the Planet's mass.
+- Increase the initial velocity.
+- Set the Moon's velocity to zero.
+- Increase the gravitational constant `G`.
+- Add a fourth object.
+
+You'll quickly notice that even tiny changes can completely change the orbit.
+
+That's actually one of the reasons orbital mechanics is so interesting.
 
 ## What You'll Learn
 
