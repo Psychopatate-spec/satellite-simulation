@@ -19,7 +19,7 @@ vx1, vy1 = 0.0, 0.0
 M2 = 1
 x2, y2 = 400.0, 200.0
 # Giving it an initial sideways velocity so it orbits instead of falling straight in
-vx2, vy2 = 20.0, 0.0
+vx2, vy2 = -12.0, 5.0
 
 # Satellite 3 (Moon, even thought it doesn't really orbit around the planet in this simple model, it's just influenced by both)
 M3 = 0.1
