@@ -354,14 +354,14 @@ You'll quickly notice that even tiny changes can completely change the orbit.
 
 That's actually one of the reasons orbital mechanics is so interesting.
 
-## What You'll Learn
+## Conclusion
 
-This project introduces:
+Congratz dude ! You just created your own solar system. Isn't that tuff ? You learned how to use Pygame-ce, use vectors, transform a real life problem into code, and maybe learned a bit more about physics behind missions like Artemis II !
 
-- Newtonian mechanics
-- Vectors
-- Gravity simulation
-- Numerical integration
-- Real-time rendering
-- Game loops
-- Physics programming
+If you could use this simulation to actually create a simulation of the real Artemis II mission, it would be insane. Please do so if you want to play around with this tutorial even more.
+
+## More resources
+
+- [More on satellites and Newton's laws](https://hscprep.com.au/hsc-physics/newtons-law-of-gravitation-and-satellite-orbits/)
+- [Python for beginners](https://www.codedex.io/python)
+- [Pygame-ce documentation](https://pyga.me/docs/)
