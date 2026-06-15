@@ -70,7 +70,7 @@ First, we import pygame (and not pygame-ce), then we initialize it. We'll need a
 Here comes the physics part of the simulation.
 The core of our simulation is Newton's Law of Universal Gravitation:
 
-```text
+```python
 F = G * (M1 * M2) / R²
 ```
 
@@ -83,7 +83,7 @@ Where:
 
 Using Newton's Second Law:
 
-```text
+```python
 a = F / m
 ```
 
@@ -91,7 +91,7 @@ We can compute acceleration.
 
 We then update velocity and position:
 
-```text
+```python
 v = v + a * dt
 x = x + v * dt
 ```
