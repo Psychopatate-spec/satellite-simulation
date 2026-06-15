@@ -147,7 +147,7 @@ The farther apart they are, the weaker the attraction.
 Newton summarized this relationship with the equation:
 
 ```python
-F = G * (M1 * M2) / R²
+F = G * (M1 * M2) / R ** 2
 ```
 
 Don't worry if this looks scary.
