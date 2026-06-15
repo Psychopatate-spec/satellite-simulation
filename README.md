@@ -25,7 +25,7 @@ This project demonstrates how to simulate gravity using **Newton's Law of Univer
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.14.5
 - pygame-ce
 
 Install pygame-ce:
@@ -328,9 +328,3 @@ This project introduces:
 - Real-time rendering
 - Game loops
 - Physics programming
-
----
-
-## License
-
-MIT License
