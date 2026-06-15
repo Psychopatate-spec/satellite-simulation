@@ -1,8 +1,8 @@
 # ☀️ Build Your Own Solar System with Pygame
 
-A beginner-friendly orbital mechanics simulator built using **Pygame Community Edition (pygame-ce)**.
+Today I'll be teaching you how to build your own solar system using **Pygame Community Edition (pygame-ce)**.
 
-This project demonstrates how to simulate gravity using **Newton's Law of Universal Gravitation** and create realistic-looking planetary motion.
+This project demonstrates how to simulate gravity using **Newton's Law of Universal Gravitation** (sounds scary but it'll be find trust me) and create realistic-looking planetary motion.
 
 ---
 
@@ -28,20 +28,10 @@ This project demonstrates how to simulate gravity using **Newton's Law of Univer
 - Python 3.14.5
 - pygame-ce
 
-Install pygame-ce:
+So, because I'm using Python 3.14.5 and that Pygame isn't supported anymore, we'll use Pygame-ce, which stands for Pygame Community Edition. It does the same thing so dw. To install it, open your terminal and type this command:
 
 ```bash
 pip install pygame-ce
-```
-
----
-
-## Project Structure
-
-```text
-.
-├── README.md
-└── script.py
 ```
 
 ---
@@ -71,10 +61,13 @@ while running:
 pygame.quit()
 ```
 
+First, we import pygame (and not pygame-ce), then we initialize it. We'll need a screen by 800 x 800 pixels. Then, we create a loop that checks if we quit the window, which will kill pygame. Finally, we fill the screen with a pitch black color, because, well, space is black. 
+
 ---
 
 ## Physics
 
+Here comes the physics part of the simulation.
 The core of our simulation is Newton's Law of Universal Gravitation:
 
 ```text
@@ -102,6 +95,8 @@ We then update velocity and position:
 v = v + a * dt
 x = x + v * dt
 ```
+
+Now that we understand the physics that make our planets move, we can move on to actually creating those planets.
 
 ---
 
@@ -180,7 +175,7 @@ Compute gravitational force:
 F = G * (M1 * M2) / (R**2)
 ```
 
-Split force into components:
+Split force into components (x and y axis, with the top-left of the screen being the origin):
 
 ```python
 Fx = F * (dx / R)
@@ -235,9 +230,14 @@ The Moon is affected by both the Sun and the Planet.
 
 Calculate both forces separately and add them together.
 
+And boom, you got 2 planets going around a sun. Cool no ?
+You've now technically finished the tutorial, and the following steps are just extras that will make the project prettier. We'll be adding an orbit trail to our planets, and text that shows the velocity of our planets, their distance from the sun, and the FPS. 
+
 ---
 
 ## Step 3 — Orbit Trails
+
+We will store the position of our planets (yes even the sun has a trajoctory, but because it's so massive, we don't get to actually notice it.) and then draw a point for each position our planets went to.
 
 Store previous positions:
 
@@ -262,37 +262,44 @@ for pos in trail1:
     pygame.draw.circle(screen, (255, 215, 0), pos, 1)
 ```
 
+Boom, got a trajectory.
+
 ---
 
 ## Step 4 — HUD
 
-Create a font:
+First, we need a font.
 
 ```python
 default_font = pygame.font.SysFont(None, 24)
 ```
 
-Display information:
+Then, we will display our useful infos such as distance, velocity, and FPS.
 
 ```python
-fps_text = default_font.render(
-    f"FPS: {int(clock.get_fps())}",
-    True,
-    (255,255,255)
-)
+velocity1 = default_font.render("velocity 1: " + str(round(math.sqrt(vx2**2 + vy2**2))), True, (255, 255, 255))
+velocity2 = default_font.render("velocity 2: " + str(round(math.sqrt(vx3**2 + vy3**2))), True, (255, 255, 255))
+distance_text1 = default_font.render("distance 1: " + str(round(R)), True, (255, 255, 255))
+distance_text2 = default_font.render("distance 2: " + str(round(R3_planet)), True, (255, 255, 255))
+fps_text = default_font.render("FPS: " + str(int(clock.get_fps())), True, (255, 255, 255))
+screen.blit(fps_text, (10, 50))
+screen.blit(velocity1, (10, 10))
+screen.blit(velocity2, (10, 30))
+screen.blit(distance_text1, (10, 70))
+screen.blit(distance_text2, (10, 90))
 ```
 
 ---
 
 ## Step 5 — Pause Functionality
 
-Create a pause variable:
+To pause our simulation, we'll first need a variable "paused" :
 
 ```python
 paused = False
 ```
 
-Toggle pause:
+To toggle pause, we'll check inside the while loop if the space bar is being pressed. If so, we change the "paused" variable:
 
 ```python
 if event.type == pygame.KEYDOWN:
@@ -311,10 +318,13 @@ if paused:
 
 ## Running
 
+Let's test this ! Inside of your terminal, change directory into your project's folder using the cd and ls commands to navigate your way through, and run this command:
+
 ```bash
 python3 script.py
 ```
 
+You should see a black screen with planets moving around. Cool no ? Feel free to mess around with the values of masses, initial velocity, or even the G constant, and see what happens !
 ---
 
 ## What You'll Learn

@@ -3,6 +3,7 @@ import math
 
 pygame.init()
 screen = pygame.display.set_mode((800, 800))
+pygame.display.set_caption("Solar System Simulator")
 default_font = pygame.font.SysFont(None, 24)
 clock = pygame.time.Clock()  # Used to control frame rate
 
