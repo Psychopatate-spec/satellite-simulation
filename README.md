@@ -359,6 +359,7 @@ python3 script.py
 ```
 
 You should see a black screen with planets moving around. Cool no ? Feel free to mess around with the values of masses, initial velocity, or even the G constant, and see what happens !
+
 ---
 
 ## Things To Try
