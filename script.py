@@ -17,15 +17,15 @@ x1, y1 = 400.0, 400.0
 vx1, vy1 = 0.0, 0.0
 
 # Satellite 2 (Light "Planet" starting to the side)
-M2 = 1
+M2 = 1000
 x2, y2 = 400.0, 200.0
 # Giving it an initial sideways velocity so it orbits instead of falling straight in
-vx2, vy2 = -12.0, 5.0
+vx2, vy2 = -20.0, 5.0
 
 # Satellite 3 (Moon, even thought it doesn't really orbit around the planet in this simple model, it's just influenced by both)
 M3 = 0.1
 x3, y3 = 400.0, 220.0
-vx3, vy3 = 22.0, 10.0
+vx3, vy3 = 20.0, 10.0
 
 # --- ORBIT TRAILS ---
 # Lists to store position history for drawing orbits
