@@ -158,24 +158,25 @@ Bigger masses = stronger pull
 Greater distance = weaker pull
 
 Compute the distance:
+To do that, we'll devide the position into 2 components, x and y. We will do the difference between the x position of the 2 bodies, and do the same for the y position, which gives you dx and dy. Using the Pythagorean theorem (pls stay with me), we can get the distance R between the 2 bodies.
+![Preview](pythagore.png)
 
 ```python
 dx = x1 - x2
 dy = y1 - y2
 
 R = math.sqrt(dx**2 + dy**2)
-
-if R < 5:
-    R = 5
 ```
 
 Compute gravitational force:
+Newton's law of universal gravitaion gives us this relation to calculate the force of attraction between the 2 bodies
 
 ```python
 F = G * (M1 * M2) / (R**2)
 ```
 
 Split force into components (x and y axis, with the top-left of the screen being the origin):
+Kind of a difficult thing to figure out. Ok so first, we got dx and dy, right. We'll devide that by R. When we do that, in every single possible situation, we notice something: we always end up with a point of length 1 from the origin. Crazy no ? That's called our unit vector. It tells us in which direction the planet should move. Great stuff. Now, by multiplying this unit verctor by the force F, we can get Fx and Fy.
 
 ```python
 Fx = F * (dx / R)
@@ -183,6 +184,7 @@ Fy = F * (dy / R)
 ```
 
 Compute accelerations:
+Using Newton's second law, we know that mass times acceleration is equal to the sum of the forces exerced on the body. Great! We do that using the Fx and Fy we just calculated earlier, and that gives us the acceleration of the first and second planet. For the second planet, we must put a minus signe in the equation, because if the first planet goes left, the second must go right. They attract each other.
 
 ```python
 ax2 = Fx / M2
@@ -193,6 +195,14 @@ ay1 = -Fy / M1
 ```
 
 Update velocities:
+To calculate velocity, we have to take it's acceleration and multiply it by time. Inside of out while loop, we add a variable called dt that will represent time:
+
+```python
+dt = clock.tick(60) / 100
+```
+
+Here, 60 is our FPS, and 100 is our speed. You can use a bigger number to make the simulation slower or use a smaller number to make it faster. For me personally, 100 is fine.
+Then we can update velocites:
 
 ```python
 vx1 += ax1 * dt
@@ -203,6 +213,7 @@ vy2 += ay2 * dt
 ```
 
 Update positions:
+Same thing for position. You take velocity and multiply it by time to get position.
 
 ```python
 x1 += vx1 * dt
@@ -212,13 +223,23 @@ x2 += vx2 * dt
 y2 += vy2 * dt
 ```
 
+## Step 2 — Draw the planets:
+Okay, now you have a bunch of numbers, but you still can't actually see anything. Let's fix that!
+
+```python
+pygame.draw.circle(screen, (255, 255, 255), (int(x2), int(y2)), 7)
+pygame.draw.circle(screen, (128, 128, 128), (int(x3), int(y3)), 5)
+```
+
+To do that, we use pygame.draw and tell it which shape to draw, which in our case is a circle, but I guess you can make cubic planets if you want. Then we set it's color using RGB. After that, we give it's coordinates, which will be the ones we just calculated, x1 and y1, and x2 and y2. Finally, we give it's radius. 
+
 You should now have a planet that orbits around a sun in an eliptic trajectory, just like this (but without the trails yet, we'll add it later)
 
 ![Preview](/onebody.png)
 
 ---
 
-## Step 2 — Add a Moon
+## Step 3 — Add a Moon
 
 Add a third object:
 
@@ -247,7 +268,7 @@ You've now technically finished the tutorial, and the following steps are just e
 
 ---
 
-## Step 3 — Orbit Trails
+## Step 4 — Orbit Trails
 
 We will store the position of our planets (yes even the sun has a trajectory, but because it's so massive, we don't get to actually notice it.) and then draw a point for each position our planets went to.
 
@@ -278,7 +299,7 @@ Boom, got a trajectory.
 
 ---
 
-## Step 4 — HUD
+## Step 5 — HUD
 
 First, we need a font.
 
@@ -303,7 +324,7 @@ screen.blit(distance_text2, (10, 90))
 
 ---
 
-## Step 5 — Pause Functionality
+## Step 6 — Pause Functionality
 
 To pause our simulation, we'll first need a variable "paused" :
 
