@@ -159,6 +159,7 @@ Greater distance = weaker pull
 
 Compute the distance:
 To do that, we'll devide the position into 2 components, x and y. We will do the difference between the x position of the 2 bodies, and do the same for the y position, which gives you dx and dy. Using the Pythagorean theorem (pls stay with me), we can get the distance R between the 2 bodies.
+
 ![Preview](pythagore.png)
 
 ```python
