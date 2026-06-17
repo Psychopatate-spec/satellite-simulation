@@ -72,7 +72,7 @@ First, we import pygame (and not pygame-ce), then we initialize it. We'll need a
 Now, run you're script to verify that everything was installed correctly. If you're using PyCharm, you should be able to run it without any problem.
 If you're using VSCode thought, it would be preferable that you install the Python extension.
 
-![Preview](extension.png)
+![Preview](extention.png)
 
 ---
 
