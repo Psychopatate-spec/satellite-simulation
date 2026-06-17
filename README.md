@@ -19,7 +19,7 @@ This project demonstrates how to simulate gravity using **Newton's Law of Univer
 
 ## Preview
 
-![Preview](/preview.png)
+![Preview](/assets/preview.png)
 
 ---
 
@@ -72,7 +72,7 @@ First, we import pygame (and not pygame-ce), then we initialize it. We'll need a
 Now, run you're script to verify that everything was installed correctly. If you're using PyCharm, you should be able to run it without any problem.
 If you're using VSCode thought, it would be preferable that you install the Python extension.
 
-![Preview](extension.png)
+![Preview](/assets/extension.png)
 
 ---
 
@@ -171,7 +171,7 @@ Greater distance = weaker pull
 Compute the distance:
 To do that, we'll devide the position into 2 components, x and y. We will do the difference between the x position of the 2 bodies, and do the same for the y position, which gives you dx and dy. Using the Pythagorean theorem (pls stay with me), we can get the distance R between the 2 bodies.
 
-![Preview](pythagore.png)
+![Preview](/assets/pythagore.png)
 
 ```python
 dx = x1 - x2
@@ -247,7 +247,7 @@ To do that, we use pygame.draw and tell it which shape to draw, which in our cas
 
 You should now have a planet that orbits around a sun in an eliptic trajectory, just like this (but without the trails yet, we'll add it later)
 
-![Preview](/onebody.png)
+![Preview](/assets/onebody.png)
 
 ---
 
