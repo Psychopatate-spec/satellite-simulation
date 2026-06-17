@@ -34,6 +34,12 @@ So, because I'm using Python 3.14.5 and the latest versions of Python aren't ful
 pip install pygame-ce
 ```
 
+After that, you should end up with something like this in your terminal, confirming that Pygame-ce was installed successfully:
+
+```bash
+Successfully installed pygame-ce-2.5.2
+```
+
 ---
 
 ## Create a Window
@@ -61,7 +67,12 @@ while running:
 pygame.quit()
 ```
 
-First, we import pygame (and not pygame-ce), then we initialize it. We'll need a screen by 800 x 800 pixels. Then, we create a loop that checks if we quit the window, which will kill pygame. Finally, we fill the screen with a pitch black color, because, well, space is black. 
+First, we import pygame (and not pygame-ce), then we initialize it. We'll need a screen by 800 x 800 pixels. Then, we create a loop that checks if we quit the window, which will kill pygame. Finally, we fill the screen with a pitch black color, because, well, space is black.
+
+Now, run you're script to verify that everything was installed correctly. If you're using PyCharm, you should be able to run it without any problem.
+If you're using VSCode thought, it would be preferable that you install the Python extension.
+
+![Preview](extension.png)
 
 ---
 
